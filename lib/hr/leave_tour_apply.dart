@@ -546,6 +546,8 @@ import 'package:hrandsells/home_page.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
+import '../data_model/smallapi/blockdatemodel.dart';
+
 class LeaveApply_page extends StatefulWidget {
   //const LeaveApply_page({Key? key}) : super(key: key);
 
@@ -639,9 +641,34 @@ class _LeaveApply_pageState extends State<LeaveApply_page> {
     print(response.statusCode);
 
     holiday = holidayModelFromJson(response.body);
-    print("Test:"+holiday.holiday.toString());
+    print("holiday:"+holiday.holiday.toString());
 
     holidaycount = holiday.holiday.toString();
+
+    return '';
+  }
+
+
+ late BlockeddateModel blockeddateModel;
+  String blockdate = " ";
+
+  Future<String>  getblockdatedata() async {
+
+    http.Response response = await http.post(Uri.parse('http://172.20.20.69/api/smallAPI/dateblock.php'),
+        body:jsonEncode(<String, String>{
+          "xstaff": widget.xstaff,
+          "fdate": _value,
+          "tdate" : _value1,
+        })
+    );
+
+    print("Body:"+response.body);
+    print(response.statusCode);
+
+    blockeddateModel = blockeddateModelFromJson(response.body);
+    print("block:"+blockeddateModel.applydate.toString());
+
+    blockdate = blockeddateModel.applydate.toString();
 
     return '';
   }
@@ -686,6 +713,7 @@ class _LeaveApply_pageState extends State<LeaveApply_page> {
       });
     }
     getholidaydata();
+    getblockdatedata();
 
   }
 
@@ -1199,6 +1227,35 @@ class _LeaveApply_pageState extends State<LeaveApply_page> {
                               );
                             });
                           }
+
+                          else if(int.parse(blockdate) != 0){
+                            showDialog(context: context, builder: (BuildContext context) {
+                              return  AlertDialog(
+                                title: const Text("Error"),
+                                content:  Column(
+                                  children: [
+                                    Text("Date Already Applied",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                actions: [
+                                  FlatButton(
+                                    color: Color(0xFF8CA6DB),
+                                    onPressed: (){
+                                      //Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("OK"),
+                                  ),
+                                ],
+                                scrollable: true,
+                              );
+                            });
+                          }
+
                           else if ((double.parse(widget.leave_avail)+int.parse(holidaycount)) < difference){
                             showDialog(context: context, builder: (BuildContext context) {
                               return  AlertDialog(

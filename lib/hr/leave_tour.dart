@@ -346,9 +346,19 @@ class _Leave_pageState extends State<Leave_page> {
     print(response.statusCode);
 
     appliedleave = appliedLeaveModelFromJson(response.body);
-    print("Test:"+appliedleave.appliedleave);
 
-    appleave = appliedleave.appliedleave;
+
+    //appleave = appliedleave.appliedleave;
+
+    if(appliedleave.appliedleave == null){
+      appleave = "0";
+      //print("Test:"+appliedleave.appliedleave);
+      print("Applied Leave:"+appleave);
+
+    }
+    else{
+      appleave = appliedleave.appliedleave;
+    }
 
     return '';
   }

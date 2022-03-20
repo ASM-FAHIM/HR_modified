@@ -391,7 +391,7 @@ class _Absent_NotificationListState extends State<Absent_NotificationList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leave & Tour Notification'),
+        title: Text('Absent Information Notification'),
         backgroundColor: Color(0xFF8CA6DB),
       ),
 

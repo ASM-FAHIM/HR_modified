@@ -13,7 +13,7 @@ class AppliedLeaveModel {
     required this.appliedleave,
   });
 
-  String appliedleave;
+  dynamic appliedleave;
 
   factory AppliedLeaveModel.fromJson(Map<String, dynamic> json) => AppliedLeaveModel(
     appliedleave: json["appliedleave"],
