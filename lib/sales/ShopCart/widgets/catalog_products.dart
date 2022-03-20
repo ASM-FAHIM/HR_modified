@@ -26,36 +26,44 @@ class CatalogProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10
-        ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CircleAvatar(
-            radius: 30,
-            child: Text(Products.products[index].productImage),
-          ),
-          Column(
+    return InkWell(
+      child: Card(
+        color: Colors.white70,
+        child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10
+            ),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment:CrossAxisAlignment.start,
             children: [
-              Text(Products.products[index].productName,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-              Text(Products.products[index].productDexcription),
+              CircleAvatar(
+                radius: 30,
+            child: Image(image: AssetImage('images/productlogo.PNG'),),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment:CrossAxisAlignment.start,
+                children: [
+                  Text(Products.products[index].productName,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                  Text(Products.products[index].productDexcription),
+                ],
+              ),
+
+              Text(Products.products[index].price.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              // IconButton(
+              //     onPressed: () =>
+              //       cartController.addProduct(Products.products[index]),
+              //
+              //     icon: Icon(Icons.add,size: 20,)
+              // )
             ],
           ),
-
-          Text(Products.products[index].price.toString(),style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          IconButton(
-              onPressed: () =>
-                cartController.addProduct(Products.products[index]),
-
-              icon: Icon(Icons.add,size: 20,)
-          )
-        ],
+        ),
       ),
+      onTap: (){
+        cartController.addProduct(Products.products[index]);
+      },
     );
   }
 }

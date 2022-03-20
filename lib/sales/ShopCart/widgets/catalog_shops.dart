@@ -29,10 +29,10 @@ class CatalogShopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: 10,
-            vertical: 10
-        ),
+      padding: EdgeInsets.symmetric(
+          horizontal: 10,
+          vertical: 10
+      ),
       child: InkWell(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +40,7 @@ class CatalogShopCard extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 30,
-              child: Text('Image will added soon'),
+              child: Image(image: AssetImage('images/shoplogo.PNG'),),
             ),
             SizedBox(width: 30,),
             Expanded(child: Text(ShopList.shops[index].shop_name, style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),))

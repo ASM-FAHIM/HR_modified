@@ -735,6 +735,11 @@ class _Login_pageState extends State<Login_page> {
           ),
         ),
       ));
+
+      // Get.snackbar('Confirmed', 'Successfully added',
+      //     snackPosition: SnackPosition.BOTTOM
+      // );
+
     }
 
     else if(response.statusCode == 200 && data.zemail != zemail) {

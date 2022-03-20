@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hrandsells/sales/ShopCart/controller/cart_controller.dart';
 import 'package:hrandsells/sales/ShopCart/widgets/catalog_products.dart';
+
 
 
 import 'cart_screen.dart';
 
 
 class CatalogScreen extends StatelessWidget {
-  const CatalogScreen({Key? key}) : super(key: key);
+  CartController cartController = Get.put(CartController());
+   CatalogScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +19,18 @@ class CatalogScreen extends StatelessWidget {
         backgroundColor: Color(0xFF8CA6DB),
         title: Text('Products'),
         actions: [
-          IconButton(
+          // IconButton(
+          //     onPressed: () => Get.to(() => CartScreen()),
+          //     icon: Icon(Icons.shopping_cart_outlined, size: 30,)),
+          FloatingActionButton.extended(
+              backgroundColor: Color(0xFF8CA6DB),
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                size: 30,
+              ),
               onPressed: () => Get.to(() => CartScreen()),
-              icon: Icon(Icons.shopping_cart_outlined, size: 30,)),
+              label: Obx(() => Text(cartController.count.toString())))
+
         ],
       ),
       body: SafeArea(

@@ -50,8 +50,10 @@
 import 'package:get/get.dart';
 import 'package:hrandsells/sales/ShopCart/models/product_model.dart';
 
+
 class CartController extends GetxController{
   var _products = {}.obs;
+  int get count => _products.length;
 
   void addProduct(Products products){
     if(_products.containsKey(products)){
