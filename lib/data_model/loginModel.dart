@@ -1417,6 +1417,8 @@ class LoginModel {
     required this.xpassword,
     required this.xdesignation,
     required this.xsid,
+    required this.xempbank,
+    required this.xacc,
   });
 
   String xname;
@@ -1427,6 +1429,8 @@ class LoginModel {
   String xpassword;
   String xdesignation;
   String xsid;
+  String xempbank;
+  String xacc;
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
     xname: json["xname"],
@@ -1437,6 +1441,8 @@ class LoginModel {
     xpassword: json["xpassword"],
     xdesignation: json["xdesignation"],
     xsid: json["xsid"],
+    xempbank: json["xempbank"],
+    xacc: json["xacc"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -1448,5 +1454,7 @@ class LoginModel {
     "xpassword": xpassword,
     "xdesignation": xdesignation,
     "xsid": xsid,
+    "xempbank": xempbank,
+    "xacc": xacc,
   };
 }

@@ -616,7 +616,7 @@ class _LeaveTour_NotificationListState extends State<LeaveTour_NotificationList>
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text("Approver : "+"${snapshot.data![index].approver.toString()}",
+                              Text("Approver : "+"${snapshot.data![index].approver ?? " "}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold
@@ -634,7 +634,7 @@ class _LeaveTour_NotificationListState extends State<LeaveTour_NotificationList>
                               //       fontWeight: FontWeight.bold
                               //   ),
                               // ),
-                              Text("Approved By : "+"${snapshot.data![index].approvedBy.toString()}",
+                              Text("Approved By : "+"${snapshot.data![index].approvedBy ?? " "}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold

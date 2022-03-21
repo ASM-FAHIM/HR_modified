@@ -629,6 +629,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hrandsells/data_model/loginModel.dart';
 import 'package:hrandsells/drawer/drawer_page.dart';
@@ -727,18 +729,20 @@ class _Login_pageState extends State<Login_page> {
       Navigator.push(context, MaterialPageRoute(builder: (context)=>Homepage(loginModel: data,)));
     }
     else if(response.statusCode == 200 && data.xpassword != xpassword) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Password Wrong",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20,
-          ),
-        ),
-      ));
+      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //   content: Text("Password Wrong",
+      //     textAlign: TextAlign.center,
+      //     style: TextStyle(
+      //       fontSize: 20,
+      //     ),
+      //   ),
+      // ));
 
-      // Get.snackbar('Confirmed', 'Successfully added',
-      //     snackPosition: SnackPosition.BOTTOM
-      // );
+      Get.snackbar('Error', 'Password Wrong',
+          backgroundColor: Color(0XFF8CA6DB),
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM
+      );
 
     }
 

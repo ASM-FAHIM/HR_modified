@@ -175,15 +175,15 @@ class _NotificationListState extends State<NotificationList> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0)),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Working on progress",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                      ));
-                      //Navigator.push(context, MaterialPageRoute(builder: (context)=>Early_Leave_NotificationList(xposition: widget.xposition)));
+                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      //   content: Text("Working on progress",
+                      //     textAlign: TextAlign.center,
+                      //     style: TextStyle(
+                      //       fontSize: 20,
+                      //     ),
+                      //   ),
+                      // ));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Early_Leave_NotificationList(xposition: widget.xposition)));
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,

@@ -191,6 +191,7 @@ class _HomepageState extends State<Homepage> {
           body: SingleChildScrollView(
             child: Column(
               children: [
+
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0,right: 20,left: 20),
                   child: Container(
@@ -849,58 +850,58 @@ class _HomepageState extends State<Homepage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Container(
-                      //   height: MediaQuery.of(context).size.width/2.5,
-                      //   width: MediaQuery.of(context).size.width/2.5,
-                      //   decoration: BoxDecoration(
-                      //     color: Colors.white,
-                      //     //border: Border.all(color: Colors.grey),
-                      //     borderRadius: BorderRadius.circular(20),
-                      //     boxShadow: [
-                      //       BoxShadow(
-                      //         color: Colors.grey.withOpacity(0.5),
-                      //         spreadRadius: 1,
-                      //         blurRadius: 5,
-                      //         offset: Offset(0, 3), // changes position of shadow
-                      //       ),
-                      //     ],
-                      //   ),
-                      //   child: FlatButton(
-                      //     shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(20.0)),
-                      //
-                      //     onPressed: (){
-                      //       Navigator.push(context, MaterialPageRoute(builder: (context)=>Payslip_page()));
-                      //     },
-                      //     child: Column(
-                      //       crossAxisAlignment: CrossAxisAlignment.center,
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         // const Icon(FontAwesomeIcons.fileAlt,
-                      //         //   size: 60,
-                      //         //   color: Color(0xff4AA0EC),
-                      //         // ),
-                      //
-                      //         Image(
-                      //           image: AssetImage('images/payslip.png'),
-                      //           height: 60,
-                      //           width: 60,
-                      //         ),
-                      //
-                      //
-                      //         SizedBox(height: 20,),
-                      //
-                      //         Text("Pay Slip",
-                      //           textAlign: TextAlign.center,
-                      //           style: GoogleFonts.openSans(
-                      //             fontSize: 15,
-                      //             color: Colors.grey,
-                      //           ),
-                      //         )
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
+                      Container(
+                        height: MediaQuery.of(context).size.width/2.5,
+                        width: MediaQuery.of(context).size.width/2.5,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          //border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Payslip_page(xname: widget.loginModel.xname,xempbank: widget.loginModel.xempbank,xacc: widget.loginModel.xacc, xstaff: widget.loginModel.xstaff,)));
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // const Icon(FontAwesomeIcons.fileAlt,
+                              //   size: 60,
+                              //   color: Color(0xff4AA0EC),
+                              // ),
+
+                              Image(
+                                image: AssetImage('images/payslip.png'),
+                                height: 60,
+                                width: 60,
+                              ),
+
+
+                              SizedBox(height: 20,),
+
+                              Text("Pay Slip",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.openSans(
+                                  fontSize: 15,
+                                  color: Colors.grey,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
 
                       SizedBox(width: 20,),
                       //

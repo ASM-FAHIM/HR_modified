@@ -698,7 +698,7 @@ class _Early_Leave_NotificationListState extends State<Early_Leave_NotificationL
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Leave & Tour Notification'),
+        title: Text('Early Leave Notification'),
         backgroundColor: Color(0xFF8CA6DB),
       ),
 
@@ -731,33 +731,39 @@ class _Early_Leave_NotificationListState extends State<Early_Leave_NotificationL
                                   //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text((DateFormat("dd-MM-yyyy").format(DateTime.parse((snapshot.data![index].applyDate.date).toString()))).toString()),
-                                    Text(" ${snapshot.data![index].typeOfApplication}"),
+                                    //Text(" ${snapshot.data![index].typeOfApplication}"),
                                     //Text(" ${snapshot.data![index].status}")
                                   ],
                                 ),
-                                Text(" ${snapshot.data![index].status}")
+                                Text("Early Leave")
                               ],
                             ),
                             children: <Widget>[
-                              Text("From Date : "+(DateFormat("dd-MM-yyyy").format(DateTime.parse((snapshot.data![index].fromDate.date).toString()))).toString(),
+                              Text("Date : "+(DateFormat("dd-MM-yyyy").format(DateTime.parse((snapshot.data![index].fromDate.date).toString()))).toString(),
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text("To Date : "+(DateFormat("dd-MM-yyyy").format(DateTime.parse((snapshot.data![index].toDate.date).toString()))).toString(),
+                              Text("Day : "+(DateFormat("dd-MM-yyyy").format(DateTime.parse((snapshot.data![index].toDate.date).toString()))).toString(),
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text("Applied Days : "+"${snapshot.data![index].appliedDayS.toString()}",
+                              Text("IN Time : "+"${snapshot.data![index].appliedDayS.toString()}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text("Approved Days : "+"${snapshot.data![index].approvedDayS.toString()}",
+                              Text("OUT Time : "+"${snapshot.data![index].approvedDayS.toString()}",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              Text("Working Hour : "+"${snapshot.data![index].approver.toString()}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold
@@ -769,36 +775,13 @@ class _Early_Leave_NotificationListState extends State<Early_Leave_NotificationL
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text("Approver : "+"${snapshot.data![index].approver.toString()}",
+                              Text("Approval Status : "+"${snapshot.data![index].approvedRecommendedBy.toString()}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
-                              Text("Approved/Recommended by : "+"${snapshot.data![index].approvedRecommendedBy.toString()}",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              // Text("Approved/Recommended Date : "+"${snapshot.data![index].approvedRecommendedDate}",
-                              //   style: TextStyle(
-                              //       fontSize: 15,
-                              //       fontWeight: FontWeight.bold
-                              //   ),
-                              // ),
-                              Text("Approved By : "+"${snapshot.data![index].approvedBy.toString()}",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              // Text("Approved Date : "+"${snapshot.data![index].approvedDate}",
-                              //   style: TextStyle(
-                              //       fontSize: 15,
-                              //       fontWeight: FontWeight.bold
-                              //   ),
-                              // ),
+
 
                             ],
                           ),
