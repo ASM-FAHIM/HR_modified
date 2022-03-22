@@ -366,6 +366,8 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import '../data_model/payslip/deduct.dart';
 import '../data_model/payslip/payment.dart';
+import '../data_model/payslip/total.dart';
+import 'package:number_to_words/number_to_words.dart';
 
 class Payslip_page extends StatefulWidget {
   //const Payslip_page({Key? key}) : super(key: key);
@@ -417,7 +419,7 @@ var items2 = [
 
   Future<List<PaymentApiModel>>? futurePost;
 
-  List<PaymentApiModel> futurepost = [];
+  // List<PaymentApiModel> futurepost = [];
 
   Future<List<PaymentApiModel>> fetchPost() async {
     print("called");
@@ -457,6 +459,56 @@ var items2 = [
 
       print(response.body);
       return parsed.map<DeductApiModel>((json) => DeductApiModel.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load album');
+    }
+
+  }
+
+
+  Future<TotalApiModel>? futurePosttotal;
+
+  late TotalApiModel totalpay;
+  String totalpayment = " ";
+  double payment = 0;
+
+  // Future<String>  gettotal() async {
+  //
+  //   http.Response response = await http.post(Uri.parse('http://172.20.20.69/api/payslip/totalpay.php'),
+  //       body:jsonEncode(<String, String>{
+  //         "xstaff":widget.xstaff,
+  //         "xyear": dropdownvalue2,
+  //         "xper": dropdownvalue
+  //       })
+  //   );
+  //
+  //   print("Body:"+response.body);
+  //   print(response.statusCode);
+  //
+  //   totalpay = totalApiModelFromJson(response.body);
+  //
+  //   totalpayment = totalpay.total;
+  //   payment = double.parse(totalpayment);
+  //
+  //   print("payment"+payment.toString());
+  //   return '';
+  // }
+
+
+  Future<List<TotalApiModel>> fetchPosttotal() async {
+    print("called");
+    var response= await http.post(Uri.parse('http://172.20.20.69/api/payslip/totalpay.php'),body:
+    jsonEncode(<String, String>{
+      "xstaff":widget.xstaff,
+      "xyear": dropdownvalue2,
+      "xper": dropdownvalue
+    })
+    );
+    if (response.statusCode == 200) {
+      final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
+
+      print(response.body);
+      return parsed.map<TotalApiModel>((json) => TotalApiModel.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load album');
     }
@@ -592,9 +644,7 @@ var items2 = [
                       //     ),
                       //   ),
                       // ),
-                      SizedBox(
-                        width: 20,
-                      ),
+
 
                       // FlatButton(
                       //   onPressed: (){
@@ -647,6 +697,19 @@ var items2 = [
                       //     ),
                       //   ),
                       // ),
+
+                      Text(
+                        "Month",
+                        style: GoogleFonts.openSans(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                      ),
+
+                      SizedBox(
+                        width: 20,
+                      ),
 
                       DropdownButton(
                         value: dropdownvalue,
@@ -725,6 +788,16 @@ var items2 = [
                       //     ),
                       //   ),
                       // ),
+
+                      Text(
+                        "Year",
+                        style: GoogleFonts.openSans(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                      ),
+
                       SizedBox(
                         width: 20,
                       ),
@@ -788,6 +861,9 @@ var items2 = [
                       isVisible = !isVisible;
                       fetchPost();
                       fetchPostdeduct();
+                      fetchPosttotal();
+
+                      //gettotal();
                       print(dropdownvalue);
                       print(dropdownvalue2);
 
@@ -1048,6 +1124,9 @@ var items2 = [
                         SizedBox(
                           height: 10,
                         ),
+
+
+
                         Text(
                           "Total",
                           style: GoogleFonts.openSans(
@@ -1055,34 +1134,97 @@ var items2 = [
                             fontSize: 20,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Amount: ",
-                                  style: TextStyle(
-                                    fontSize: 20,
+
+                        FutureBuilder<List<TotalApiModel>>(
+                          future:  fetchPosttotal(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Container(
+                                padding: const EdgeInsets.all(10),
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (_, index) => Container(
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(10),
+                                            width: MediaQuery.of(context).size.width,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(20),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Amount: ${snapshot.data![index].total ?? "0"}",
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "In Word: ${NumberToWord().convert('en-in',int.parse((snapshot.data![index].total ?? "0"))).toUpperCase()}",
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 5,)
+                                      ],
+                                    ),
+
                                   ),
                                 ),
-                                Text(
-                                  "In Word: ",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                              );
+                            } else {
+                              return Center(
+                                child: Text("Loading.."),
+                              );
+                            }
+                          },
                         ),
+
+
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: Container(
+                        //     padding: const EdgeInsets.all(10),
+                        //     width: MediaQuery.of(context).size.width,
+                        //     decoration: BoxDecoration(
+                        //       color: Colors.white,
+                        //       borderRadius: BorderRadius.circular(20),
+                        //     ),
+                        //     child: Column(
+                        //       crossAxisAlignment: CrossAxisAlignment.start,
+                        //       children: [
+                        //         Text(
+                        //           "Amount: $payment",
+                        //           style: TextStyle(
+                        //             fontSize: 20,
+                        //           ),
+                        //         ),
+                        //         Text(
+                        //           "In Word: ${NumberToWord().convert('en-in',payment.toInt()).toUpperCase()}",
+                        //           style: TextStyle(
+                        //             fontSize: 20,
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+
                       ],
                     ),
                   ),

@@ -790,66 +790,58 @@ class _HomepageState extends State<Homepage> {
                       //   ),
                       // ),
 
-                      Container(
-                        height: MediaQuery.of(context).size.width/2.5,
-                        width: MediaQuery.of(context).size.width/2.65,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          //border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 5,
-                              offset: Offset(0, 3), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: FlatButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
+                      // Container(
+                      //   height: MediaQuery.of(context).size.width/2.5,
+                      //   width: MediaQuery.of(context).size.width/2.65,
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.white,
+                      //     //border: Border.all(color: Colors.grey),
+                      //     borderRadius: BorderRadius.circular(20),
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //         color: Colors.grey.withOpacity(0.5),
+                      //         spreadRadius: 1,
+                      //         blurRadius: 5,
+                      //         offset: Offset(0, 3), // changes position of shadow
+                      //       ),
+                      //     ],
+                      //   ),
+                      //   child: FlatButton(
+                      //     shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(20.0)),
+                      //
+                      //     onPressed: (){
+                      //       //Navigator.push(context, MaterialPageRoute(builder: (context)=>Looptry(xstaff: widget.loginModel.xstaff, xposition: widget.loginModel.xposition, xsid: widget.loginModel.xsid)));
+                      //     },
+                      //     child: Column(
+                      //       crossAxisAlignment: CrossAxisAlignment.center,
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         // const Icon(Icons.sync,
+                      //         //   size: 50,
+                      //         //   color: Color(0xff4AA0EC),
+                      //         // ),
+                      //
+                      //         Image(
+                      //           image: AssetImage('images/sync.png'),
+                      //           height: 60,
+                      //           width: 60,
+                      //         ),
+                      //
+                      //         SizedBox(height: 20,),
+                      //
+                      //         Text("Data Sync",
+                      //           textAlign: TextAlign.center,
+                      //           style: GoogleFonts.openSans(
+                      //             fontSize: 15,
+                      //             color: Colors.grey,
+                      //           ),
+                      //         )
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
 
-                          onPressed: (){
-                            //Navigator.push(context, MaterialPageRoute(builder: (context)=>Looptry(xstaff: widget.loginModel.xstaff, xposition: widget.loginModel.xposition, xsid: widget.loginModel.xsid)));
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // const Icon(Icons.sync,
-                              //   size: 50,
-                              //   color: Color(0xff4AA0EC),
-                              // ),
-
-                              Image(
-                                image: AssetImage('images/sync.png'),
-                                height: 60,
-                                width: 60,
-                              ),
-
-                              SizedBox(height: 20,),
-
-                              Text("Data Sync",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.openSans(
-                                  fontSize: 15,
-                                  color: Colors.grey,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 30.0,right: 30.0, bottom: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
                       Container(
                         height: MediaQuery.of(context).size.width/2.5,
                         width: MediaQuery.of(context).size.width/2.5,
@@ -903,65 +895,127 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
 
-                      SizedBox(width: 20,),
-                      //
-                      // Container(
-                      //   height: MediaQuery.of(context).size.width/2.5,
-                      //   width: MediaQuery.of(context).size.width/2.65,
-                      //   decoration: BoxDecoration(
-                      //     color: Colors.white,
-                      //     //border: Border.all(color: Colors.grey),
-                      //     borderRadius: BorderRadius.circular(20),
-                      //     boxShadow: [
-                      //       BoxShadow(
-                      //         color: Colors.grey.withOpacity(0.5),
-                      //         spreadRadius: 1,
-                      //         blurRadius: 5,
-                      //         offset: Offset(0, 3), // changes position of shadow
-                      //       ),
-                      //     ],
-                      //   ),
-                      //   child: FlatButton(
-                      //     shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(20.0)),
-                      //
-                      //     onPressed: (){
-                      //       Navigator.push(context, MaterialPageRoute(builder: (context)=>Sales_Homepage()));
-                      //     },
-                      //     child: Column(
-                      //       crossAxisAlignment: CrossAxisAlignment.center,
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         // const Icon(FontAwesomeIcons.sellsy,
-                      //         //   size: 60,
-                      //         //   color: Color(0xff4AA0EC),
-                      //         // ),
-                      //
-                      //         Image(
-                      //           image: AssetImage('images/sales.png'),
-                      //           height: 60,
-                      //           width: 60,
-                      //         ),
-                      //
-                      //
-                      //         SizedBox(height: 20,),
-                      //
-                      //         Text("Sales",
-                      //           textAlign: TextAlign.center,
-                      //           style: GoogleFonts.openSans(
-                      //             fontSize: 15,
-                      //             color: Colors.grey,
-                      //           ),
-                      //         )
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-
-
                     ],
                   ),
                 ),
+
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 30.0,right: 30.0, bottom: 30.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Container(
+                //         height: MediaQuery.of(context).size.width/2.5,
+                //         width: MediaQuery.of(context).size.width/2.5,
+                //         decoration: BoxDecoration(
+                //           color: Colors.white,
+                //           //border: Border.all(color: Colors.grey),
+                //           borderRadius: BorderRadius.circular(20),
+                //           boxShadow: [
+                //             BoxShadow(
+                //               color: Colors.grey.withOpacity(0.5),
+                //               spreadRadius: 1,
+                //               blurRadius: 5,
+                //               offset: Offset(0, 3), // changes position of shadow
+                //             ),
+                //           ],
+                //         ),
+                //         child: FlatButton(
+                //           shape: RoundedRectangleBorder(
+                //               borderRadius: BorderRadius.circular(20.0)),
+                //
+                //           onPressed: (){
+                //             Navigator.push(context, MaterialPageRoute(builder: (context)=>Payslip_page(xname: widget.loginModel.xname,xempbank: widget.loginModel.xempbank,xacc: widget.loginModel.xacc, xstaff: widget.loginModel.xstaff,)));
+                //           },
+                //           child: Column(
+                //             crossAxisAlignment: CrossAxisAlignment.center,
+                //             mainAxisAlignment: MainAxisAlignment.center,
+                //             children: [
+                //               // const Icon(FontAwesomeIcons.fileAlt,
+                //               //   size: 60,
+                //               //   color: Color(0xff4AA0EC),
+                //               // ),
+                //
+                //               Image(
+                //                 image: AssetImage('images/payslip.png'),
+                //                 height: 60,
+                //                 width: 60,
+                //               ),
+                //
+                //
+                //               SizedBox(height: 20,),
+                //
+                //               Text("Pay Slip",
+                //                 textAlign: TextAlign.center,
+                //                 style: GoogleFonts.openSans(
+                //                   fontSize: 15,
+                //                   color: Colors.grey,
+                //                 ),
+                //               )
+                //             ],
+                //           ),
+                //         ),
+                //       ),
+                //
+                //       SizedBox(width: 20,),
+                //       //
+                //       // Container(
+                //       //   height: MediaQuery.of(context).size.width/2.5,
+                //       //   width: MediaQuery.of(context).size.width/2.65,
+                //       //   decoration: BoxDecoration(
+                //       //     color: Colors.white,
+                //       //     //border: Border.all(color: Colors.grey),
+                //       //     borderRadius: BorderRadius.circular(20),
+                //       //     boxShadow: [
+                //       //       BoxShadow(
+                //       //         color: Colors.grey.withOpacity(0.5),
+                //       //         spreadRadius: 1,
+                //       //         blurRadius: 5,
+                //       //         offset: Offset(0, 3), // changes position of shadow
+                //       //       ),
+                //       //     ],
+                //       //   ),
+                //       //   child: FlatButton(
+                //       //     shape: RoundedRectangleBorder(
+                //       //         borderRadius: BorderRadius.circular(20.0)),
+                //       //
+                //       //     onPressed: (){
+                //       //       Navigator.push(context, MaterialPageRoute(builder: (context)=>Sales_Homepage()));
+                //       //     },
+                //       //     child: Column(
+                //       //       crossAxisAlignment: CrossAxisAlignment.center,
+                //       //       mainAxisAlignment: MainAxisAlignment.center,
+                //       //       children: [
+                //       //         // const Icon(FontAwesomeIcons.sellsy,
+                //       //         //   size: 60,
+                //       //         //   color: Color(0xff4AA0EC),
+                //       //         // ),
+                //       //
+                //       //         Image(
+                //       //           image: AssetImage('images/sales.png'),
+                //       //           height: 60,
+                //       //           width: 60,
+                //       //         ),
+                //       //
+                //       //
+                //       //         SizedBox(height: 20,),
+                //       //
+                //       //         Text("Sales",
+                //       //           textAlign: TextAlign.center,
+                //       //           style: GoogleFonts.openSans(
+                //       //             fontSize: 15,
+                //       //             color: Colors.grey,
+                //       //           ),
+                //       //         )
+                //       //       ],
+                //       //     ),
+                //       //   ),
+                //       // ),
+                //
+                //
+                //     ],
+                //   ),
+                // ),
 
 
                 SizedBox(height: 20,),

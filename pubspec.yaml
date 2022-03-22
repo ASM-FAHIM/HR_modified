@@ -55,6 +55,7 @@ dependencies:
   http:
   path: ^1.8.0
   sqflite: ^2.0.2
+  number_to_words: ^1.0.0
 
 dev_dependencies:
   flutter_test:
