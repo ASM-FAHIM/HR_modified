@@ -355,11 +355,13 @@
 
 
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hrandsells/report/payslipreport.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import '../data_model/payslip/deduct.dart';
@@ -379,7 +381,9 @@ class Payslip_page extends StatefulWidget {
 }
 
 class _Payslip_pageState extends State<Payslip_page> {
-  String dropdownvalue = 'This Month';
+  String dropdownvalue = '1';
+  String dropdownvalue2 = '2022';
+
   //String date = DateFormat("yyyy-MM-dd").format(DateTime.now());
   //DateTime now = DateTime.now();
   //String date = DateTime.now().toString();
@@ -390,22 +394,38 @@ class _Payslip_pageState extends State<Payslip_page> {
 
   // List of items in our dropdown menu
   var items = [
-    'This Month',
-    'Last Month',
-    '2 Months Ago'
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+
+    //'2 Months Ago',
+  ];
+var items2 = [
+    '2022',
+    '2021'
     //'2 Months Ago',
   ];
 
   Future<List<PaymentApiModel>>? futurePost;
 
+  List<PaymentApiModel> futurepost = [];
 
   Future<List<PaymentApiModel>> fetchPost() async {
     print("called");
     var response= await http.post(Uri.parse('http://172.20.20.69/api/payslip/payment.php'),body:
     jsonEncode(<String, String>{
       "xstaff":widget.xstaff,
-      "xyear": "2022",
-      "xper": "2"
+      "xyear": dropdownvalue2,
+      "xper": dropdownvalue
     })
     );
     if (response.statusCode == 200) {
@@ -428,8 +448,8 @@ class _Payslip_pageState extends State<Payslip_page> {
     var response= await http.post(Uri.parse('http://172.20.20.69/api/payslip/deduct.php'),body:
     jsonEncode(<String, String>{
       "xstaff":widget.xstaff,
-      "xyear": "2022",
-      "xper": "2"
+      "xyear": dropdownvalue2,
+      "xper": dropdownvalue
     })
     );
     if (response.statusCode == 200) {
@@ -443,13 +463,18 @@ class _Payslip_pageState extends State<Payslip_page> {
 
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    futurePost = fetchPost();
-    futurePostdeduct = fetchPostdeduct();
-  }
+
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // fetchPost().whenComplete(()=>futurePost);
+  //   // fetchPostdeduct().whenComplete(()=>futurePostdeduct);
+  //
+  //   futurePost = fetchPost();
+  //   futurePostdeduct = fetchPostdeduct();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -530,17 +555,99 @@ class _Payslip_pageState extends State<Payslip_page> {
                       SizedBox(
                         width: 30,
                       ),
-                      Text(
-                        "Month:",
-                        style: GoogleFonts.openSans(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
+                      // FlatButton(
+                      //   onPressed: (){
+                      //     showDialog(context: context, builder: (BuildContext context) {
+                      //       return  AlertDialog(
+                      //         title: const Text("Error"),
+                      //         content:  Column(
+                      //           children: [
+                      //             Text("Date Already Applied",
+                      //               style: TextStyle(
+                      //                 color: Colors.black,
+                      //               ),
+                      //             ),
+                      //           ],
+                      //         ),
+                      //         actions: [
+                      //           FlatButton(
+                      //             color: Color(0xFF8CA6DB),
+                      //             onPressed: (){
+                      //               //Navigator.pop(context);
+                      //               Navigator.pop(context);
+                      //             },
+                      //             child: Text("OK"),
+                      //           ),
+                      //         ],
+                      //         scrollable: true,
+                      //       );
+                      //     });
+                      //   },
+                      //   child: Text(
+                      //     "Month:",
+                      //     style: GoogleFonts.openSans(
+                      //       fontWeight: FontWeight.bold,
+                      //       fontSize: 20,
+                      //       color: Colors.black,
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(
                         width: 20,
                       ),
+
+                      // FlatButton(
+                      //   onPressed: (){
+                      //     showDialog(context: context, builder: (BuildContext context) {
+                      //       return  AlertDialog(
+                      //         title: const Text("Month"),
+                      //         content:   DropdownButton(
+                      //           value: dropdownvalue,
+                      //
+                      //           // Down Arrow Icon
+                      //           icon: const Icon(Icons.keyboard_arrow_down),
+                      //
+                      //           // Array list of items
+                      //           items: items.map((String items) {
+                      //             return DropdownMenuItem(
+                      //               value: items,
+                      //               child: Text(items),
+                      //             );
+                      //           }).toList(),
+                      //           // After selecting the desired option,it will
+                      //           // change button value to selected value
+                      //           onChanged: (String? newValue) {
+                      //             setState(() {
+                      //               dropdownvalue = newValue!;
+                      //             });
+                      //           },
+                      //         ),
+                      //         actions: [
+                      //           FlatButton(
+                      //             color: Color(0xFF8CA6DB),
+                      //             onPressed: (){
+                      //               //Navigator.pop(context);
+                      //               // fetchPost();
+                      //               // fetchPostdeduct();
+                      //               Navigator.pop(context);
+                      //             },
+                      //             child: Text("OK"),
+                      //           ),
+                      //         ],
+                      //         scrollable: true,
+                      //       );
+                      //     });
+                      //   },
+                      //   child: Text(
+                      //     "Month",
+                      //     style: GoogleFonts.openSans(
+                      //       fontWeight: FontWeight.bold,
+                      //       fontSize: 20,
+                      //       color: Colors.black,
+                      //     ),
+                      //   ),
+                      // ),
+
                       DropdownButton(
                         value: dropdownvalue,
 
@@ -562,6 +669,91 @@ class _Payslip_pageState extends State<Payslip_page> {
                           });
                         },
                       ),
+
+                      SizedBox(
+                        width: 20,
+                      ),
+                      //
+                      // FlatButton(
+                      //   onPressed: (){
+                      //     showDialog(context: context, builder: (BuildContext context) {
+                      //       return  AlertDialog(
+                      //         title: const Text("Year"),
+                      //         content:   DropdownButton(
+                      //           value: dropdownvalue2,
+                      //
+                      //           // Down Arrow Icon
+                      //           icon: const Icon(Icons.keyboard_arrow_down),
+                      //
+                      //           // Array list of items
+                      //           items: items2.map((String items) {
+                      //             return DropdownMenuItem(
+                      //               value: items,
+                      //               child: Text(items),
+                      //             );
+                      //           }).toList(),
+                      //           // After selecting the desired option,it will
+                      //           // change button value to selected value
+                      //           onChanged: (String? newValue) {
+                      //             setState(() {
+                      //               dropdownvalue2 = newValue!;
+                      //             });
+                      //           },
+                      //         ),
+                      //         actions: [
+                      //           FlatButton(
+                      //             color: Color(0xFF8CA6DB),
+                      //             onPressed: (){
+                      //               //Navigator.pop(context);
+                      //               fetchPost();
+                      //               fetchPostdeduct();
+                      //               Navigator.pop(context);
+                      //             },
+                      //             child: Text("OK"),
+                      //           ),
+                      //         ],
+                      //         scrollable: true,
+                      //       );
+                      //     });
+                      //   },
+                      //   child: Text(
+                      //     "Year",
+                      //     style: GoogleFonts.openSans(
+                      //       fontWeight: FontWeight.bold,
+                      //       fontSize: 20,
+                      //       color: Colors.black,
+                      //     ),
+                      //   ),
+                      // ),
+                      SizedBox(
+                        width: 20,
+                      ),
+
+                      DropdownButton(
+                        value: dropdownvalue2,
+
+                        // Down Arrow Icon
+                        icon: const Icon(Icons.keyboard_arrow_down),
+
+                        // Array list of items
+                        items: items2.map((String items) {
+                          return DropdownMenuItem(
+                            value: items,
+                            child: Text(items),
+                          );
+                        }).toList(),
+                        // After selecting the desired option,it will
+                        // change button value to selected value
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownvalue2 = newValue!;
+                          });
+                        },
+                      ),
+
+
+
+
                     ],
                   ),
                 ],
@@ -596,6 +788,10 @@ class _Payslip_pageState extends State<Payslip_page> {
                       isVisible = !isVisible;
                       fetchPost();
                       fetchPostdeduct();
+                      print(dropdownvalue);
+                      print(dropdownvalue2);
+
+                      //Navigator.push(context, MaterialPageRoute(builder: (context)=>Payslipreport(paymentApiModel: paymentApiModel)))
                     });
                   },
                   child: Text(
@@ -740,7 +936,7 @@ class _Payslip_pageState extends State<Payslip_page> {
                         SizedBox(height: 10,),
 
                         FutureBuilder<List<PaymentApiModel>>(
-                          future: futurePost,
+                          future:  fetchPost(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               return Container(
@@ -809,7 +1005,7 @@ class _Payslip_pageState extends State<Payslip_page> {
                         // ),
 
                         FutureBuilder<List<DeductApiModel>>(
-                          future: futurePostdeduct,
+                          future:  fetchPostdeduct(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               return Container(
