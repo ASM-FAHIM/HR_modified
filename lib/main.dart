@@ -8,9 +8,7 @@ import 'package:path_provider/path_provider.dart';
 // import 'package:hive_flutter/hive_flutter.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-
 void main() async {
-
   runApp(const MyApp());
 }
 
@@ -35,13 +33,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-     // home: Drawerpage(),
-     home: Splashpage(),
-     //  home: MainPage(title: "title"),
+      // home: Drawerpage(),
+      home: Splashpage(),
+      //  home: MainPage(title: "title"),
     );
   }
 }
-
 
 //
 // child: ListView(

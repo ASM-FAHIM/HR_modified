@@ -35,7 +35,6 @@
 //   }
 // }
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,16 +47,18 @@ class CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() =>
-        Column(
+    return Obx(
+      () => Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 Container(
                   //padding: EdgeInsets.symmetric(horizontal: 90),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,19 +69,16 @@ class CartTotal extends StatelessWidget {
                                 fontFamily: GoogleFonts.poppins().fontFamily,
                                 fontSize: 18,
                                 // fontFamily:
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            '${cartController.getTotal()}'+' Taka',
+                            '${cartController.getTotal()}' + ' Taka',
                             style: TextStyle(
                                 fontFamily: GoogleFonts.poppins().fontFamily,
                                 color: Colors.teal,
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
-
                         ],
                       ),
                       Row(
@@ -92,8 +90,7 @@ class CartTotal extends StatelessWidget {
                                 fontFamily: GoogleFonts.poppins().fontFamily,
                                 fontSize: 18,
                                 // fontFamily:
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                           Text(
                             '0.0 Taka',
@@ -101,10 +98,8 @@ class CartTotal extends StatelessWidget {
                                 fontFamily: GoogleFonts.poppins().fontFamily,
                                 color: Colors.teal,
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
-
                         ],
                       ),
                       Row(
@@ -115,24 +110,21 @@ class CartTotal extends StatelessWidget {
                             style: TextStyle(
                                 fontFamily: GoogleFonts.poppins().fontFamily,
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
-                          Text(' '+
-                              '${cartController.getTotal()}'+' Taka',
+                          Text(
+                            ' ' + '${cartController.getTotal()}' + ' Taka',
                             style: TextStyle(
                                 fontFamily: GoogleFonts.poppins().fontFamily,
                                 color: Colors.teal,
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-
                 InkWell(
                   child: Container(
                     height: 55,
@@ -144,28 +136,31 @@ class CartTotal extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.shopping_cart,color: Colors.black,),
-                        Text('Checkout',
+                        Icon(
+                          Icons.shopping_cart,
+                          color: Colors.black,
+                        ),
+                        Text(
+                          'Checkout',
                           style: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
                               color: Colors.black,
                               fontSize: 18,
-                              fontWeight: FontWeight.bold
-                          ),
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                   ),
-                  onTap: (){
+                  onTap: () {
                     Get.snackbar('Confirmed', 'Successfully added',
-                        snackPosition: SnackPosition.BOTTOM
-                    );
+                        snackPosition: SnackPosition.BOTTOM);
                   },
                 ),
               ],
             ),
           ],
         ),
+      ),
     );
   }
 }

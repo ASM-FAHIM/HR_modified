@@ -34,9 +34,9 @@
 //
 //
 
-
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:hrandsells/sales/ShopCart/screens/shop_screen.dart';
 import 'package:hrandsells/screen/login_page.dart';
 
 class Splashpage extends StatefulWidget {
@@ -52,18 +52,18 @@ class _SplashpageState extends State<Splashpage> {
     return SafeArea(
       child: Container(
           child: AnimatedSplashScreen(
-            duration: 500,
-            splash: Image.asset("images/orange.png",
-              // height: MediaQuery.of(context).size.height,
-              // width: MediaQuery.of(context).size.width,
-            ),
-            splashIconSize: double.infinity,
-            nextScreen: const Login_page(),
-            //splashTransition: SplashTransition.decoratedBoxTransition,
-            //pageTransitionType: PageTransitionType.scale,
-            backgroundColor: Colors.white,
-          )
-      ),
+        duration: 500,
+        splash: Image.asset(
+          "images/orange.png",
+          // height: MediaQuery.of(context).size.height,
+          // width: MediaQuery.of(context).size.width,
+        ),
+        splashIconSize: double.infinity,
+        nextScreen: const Login_page(),
+        //splashTransition: SplashTransition.decoratedBoxTransition,
+        //pageTransitionType: PageTransitionType.scale,
+        backgroundColor: Colors.white,
+      )),
     );
   }
 }

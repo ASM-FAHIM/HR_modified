@@ -33,7 +33,6 @@ class Homepage extends StatefulWidget {
   _HomepageState createState() => _HomepageState();
 }
 
-
 // Future<List<PromotionModel>> fetchPost() async {
 //   final response =
 //   await http.get(Uri.parse('http://flutterapi.brotherdev.com/api.php'));
@@ -49,17 +48,15 @@ class Homepage extends StatefulWidget {
 //   }
 // }
 
-
 class _HomepageState extends State<Homepage> {
-
   String date = DateFormat("yyyy-MM-dd").format(DateTime.now());
   DateTime now = DateTime.now();
   String intime = '';
   String outtime = '';
   bool pressAttention = false;
   bool pressAttention1 = false;
-  late String _currentAddress =" ";
-  late String _currentAddressout =" ";
+  late String _currentAddress = " ";
+  late String _currentAddressout = " ";
 
   Future<List<PromotionModel>>? futurePost;
 
@@ -77,40 +74,37 @@ class _HomepageState extends State<Homepage> {
       Placemark place = placemarks[0];
 
       setState(() {
-        _currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
+        _currentAddress =
+            "${place.locality}, ${place.postalCode}, ${place.country}";
         //_currentAddressout = "${place.locality}, ${place.postalCode}, ${place.country}";
       });
     } catch (e) {
       print(e);
     }
     //print(_currentAddress);
-
   }
-
 
   late XbalanceModel leave_remain1;
   String xbalance = " ";
 
-  Future<String>  getAPIDATA() async {
-
-    http.Response response = await http.post(Uri.parse('http://172.20.20.69/api/availableleave.php'),
-        body:jsonEncode(<String, String>{
+  Future<String> getAPIDATA() async {
+    http.Response response = await http.post(
+        Uri.parse('http://172.20.20.69/api/availableleave.php'),
+        body: jsonEncode(<String, String>{
           "xstaff": widget.loginModel.xstaff,
           "xtypeleave": "Annual Leave"
-        })
-    );
+        }));
 
-    print("Body:"+response.body);
+    print("Body:" + response.body);
     print(response.statusCode);
 
     leave_remain1 = xbalanceModelFromJson(response.body);
-    print("Test:"+leave_remain1.xbalance);
+    print("Test:" + leave_remain1.xbalance);
 
     xbalance = leave_remain1.xbalance;
 
     return '';
   }
-
 
   Future<void> getLocationout() async {
     Position position = await Geolocator.getCurrentPosition();
@@ -127,13 +121,13 @@ class _HomepageState extends State<Homepage> {
 
       setState(() {
         //_currentAddress = "${place.locality}, ${place.postalCode}, ${place.country}";
-        _currentAddressout = "${place.locality}, ${place.postalCode}, ${place.country}";
+        _currentAddressout =
+            "${place.locality}, ${place.postalCode}, ${place.country}";
       });
     } catch (e) {
       print(e);
     }
     //print(_currentAddress);
-
   }
 
   @override
@@ -153,14 +147,16 @@ class _HomepageState extends State<Homepage> {
           appBar: AppBar(
             backgroundColor: Colors.white,
 
-            title: Center(child:
-            // Image(
-            //   image: AssetImage(
-            //       'images/orange.png'),
-            //   height: 150,
-            //   width: 140,
-            // ),
-              Text(widget.loginModel.xstaff,
+            title: Center(
+              child:
+                  // Image(
+                  //   image: AssetImage(
+                  //       'images/orange.png'),
+                  //   height: 150,
+                  //   width: 140,
+                  // ),
+                  Text(
+                widget.loginModel.xstaff,
                 style: TextStyle(
                   color: Colors.blue,
                 ),
@@ -178,22 +174,19 @@ class _HomepageState extends State<Homepage> {
               Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: IconButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.logout,
-                        color: Colors.blue)
-                ),
+                    icon: Icon(Icons.logout, color: Colors.blue)),
               ),
             ],
           ),
-          
           body: SingleChildScrollView(
             child: Column(
               children: [
-
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0,right: 20,left: 20),
+                  padding:
+                      const EdgeInsets.only(top: 20.0, right: 20, left: 20),
                   child: Container(
                     //height: MediaQuery.of(context).size.width/2,
                     width: MediaQuery.of(context).size.width,
@@ -440,11 +433,12 @@ class _HomepageState extends State<Homepage> {
                     //     }
                     //   },
                     // ),
-
                   ),
                 ),
 
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
 
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -534,15 +528,14 @@ class _HomepageState extends State<Homepage> {
                 //   ],
                 // ),
 
-
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.width/2.5,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.width / 2.5,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           //border: Border.all(color: Colors.grey),
@@ -552,23 +545,30 @@ class _HomepageState extends State<Homepage> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: Offset(0, 3), // changes position of shadow
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
                             ),
                           ],
                         ),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0)),
-
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationList(xposition: widget.loginModel.xposition,)));
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NotificationList(
+                                          xposition:
+                                              widget.loginModel.xposition,
+                                        )));
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(top: 10,left: 17),
+                                padding:
+                                    const EdgeInsets.only(top: 10, left: 17),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -579,14 +579,18 @@ class _HomepageState extends State<Homepage> {
                                     // ),
 
                                     Image(
-                                      image: AssetImage('images/notification.png'),
+                                      image:
+                                          AssetImage('images/notification.png'),
                                       height: 60,
                                       width: 60,
                                     ),
 
-                                    SizedBox(height: 10,),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
 
-                                    Text("Notificaiton",
+                                    Text(
+                                      "Notificaiton",
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.openSans(
                                         fontSize: 15,
@@ -615,12 +619,12 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-
-                      SizedBox(width: 20,),
-
+                      SizedBox(
+                        width: 20,
+                      ),
                       Container(
-                        height: MediaQuery.of(context).size.width/2.5,
-                        width: MediaQuery.of(context).size.width/2.65,
+                        height: MediaQuery.of(context).size.width / 2.5,
+                        width: MediaQuery.of(context).size.width / 2.65,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           //border: Border.all(color: Colors.grey),
@@ -630,16 +634,24 @@ class _HomepageState extends State<Homepage> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: Offset(0, 3), // changes position of shadow
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
                             ),
                           ],
                         ),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0)),
-
                           onPressed: () async {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>AttendanceField(xstaff: widget.loginModel.xstaff,xposition: widget.loginModel.xposition,xsid: widget.loginModel.xsid,)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AttendanceField(
+                                          xstaff: widget.loginModel.xstaff,
+                                          xposition:
+                                              widget.loginModel.xposition,
+                                          xsid: widget.loginModel.xsid,
+                                        )));
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -656,9 +668,12 @@ class _HomepageState extends State<Homepage> {
                                 width: 60,
                               ),
 
-                              SizedBox(height: 20,),
+                              SizedBox(
+                                height: 20,
+                              ),
 
-                              Text("Attendance",
+                              Text(
+                                "Attendance",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   fontSize: 15,
@@ -669,20 +684,19 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
 
                 Padding(
-                  padding: const EdgeInsets.only(left: 30.0,right: 30.0, bottom: 30.0),
+                  padding: const EdgeInsets.only(
+                      left: 30.0, right: 30.0, bottom: 30.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: MediaQuery.of(context).size.width/2.5,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.width / 2.5,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           //border: Border.all(color: Colors.grey),
@@ -692,18 +706,26 @@ class _HomepageState extends State<Homepage> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: Offset(0, 3), // changes position of shadow
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
                             ),
                           ],
                         ),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0)),
-
-                          onPressed: ()async{
-
-
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Leave_page(xposition: widget.loginModel.xposition,xstaff: widget.loginModel.xstaff,xsid: widget.loginModel.xsid,xbalance: xbalance,xname: widget.loginModel.xname,)));
+                          onPressed: () async {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Leave_page(
+                                          xposition:
+                                              widget.loginModel.xposition,
+                                          xstaff: widget.loginModel.xstaff,
+                                          xsid: widget.loginModel.xsid,
+                                          xbalance: xbalance,
+                                          xname: widget.loginModel.xname,
+                                        )));
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -720,9 +742,12 @@ class _HomepageState extends State<Homepage> {
                                 width: 60,
                               ),
 
-                              SizedBox(height: 20,),
+                              SizedBox(
+                                height: 20,
+                              ),
 
-                              Text("Leave and Tour",
+                              Text(
+                                "Leave and Tour",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   fontSize: 15,
@@ -734,7 +759,9 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
 
-                      SizedBox(width: 20,),
+                      SizedBox(
+                        width: 20,
+                      ),
 
                       //
                       // Container(
@@ -843,8 +870,8 @@ class _HomepageState extends State<Homepage> {
                       // ),
 
                       Container(
-                        height: MediaQuery.of(context).size.width/2.5,
-                        width: MediaQuery.of(context).size.width/2.5,
+                        height: MediaQuery.of(context).size.width / 2.5,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           //border: Border.all(color: Colors.grey),
@@ -854,16 +881,24 @@ class _HomepageState extends State<Homepage> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: Offset(0, 3), // changes position of shadow
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
                             ),
                           ],
                         ),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0)),
-
-                          onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Payslip_page(xname: widget.loginModel.xname,xempbank: widget.loginModel.xempbank,xacc: widget.loginModel.xacc, xstaff: widget.loginModel.xstaff,)));
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Payslip_page(
+                                          xname: widget.loginModel.xname,
+                                          xempbank: widget.loginModel.xempbank,
+                                          xacc: widget.loginModel.xacc,
+                                          xstaff: widget.loginModel.xstaff,
+                                        )));
                           },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -880,10 +915,12 @@ class _HomepageState extends State<Homepage> {
                                 width: 60,
                               ),
 
+                              SizedBox(
+                                height: 20,
+                              ),
 
-                              SizedBox(height: 20,),
-
-                              Text("Pay Slip",
+                              Text(
+                                "Pay Slip",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   fontSize: 15,
@@ -894,141 +931,142 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
 
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 30.0,right: 30.0, bottom: 30.0),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.center,
-                //     children: [
-                //       Container(
-                //         height: MediaQuery.of(context).size.width/2.5,
-                //         width: MediaQuery.of(context).size.width/2.5,
-                //         decoration: BoxDecoration(
-                //           color: Colors.white,
-                //           //border: Border.all(color: Colors.grey),
-                //           borderRadius: BorderRadius.circular(20),
-                //           boxShadow: [
-                //             BoxShadow(
-                //               color: Colors.grey.withOpacity(0.5),
-                //               spreadRadius: 1,
-                //               blurRadius: 5,
-                //               offset: Offset(0, 3), // changes position of shadow
-                //             ),
-                //           ],
-                //         ),
-                //         child: FlatButton(
-                //           shape: RoundedRectangleBorder(
-                //               borderRadius: BorderRadius.circular(20.0)),
-                //
-                //           onPressed: (){
-                //             Navigator.push(context, MaterialPageRoute(builder: (context)=>Payslip_page(xname: widget.loginModel.xname,xempbank: widget.loginModel.xempbank,xacc: widget.loginModel.xacc, xstaff: widget.loginModel.xstaff,)));
-                //           },
-                //           child: Column(
-                //             crossAxisAlignment: CrossAxisAlignment.center,
-                //             mainAxisAlignment: MainAxisAlignment.center,
-                //             children: [
-                //               // const Icon(FontAwesomeIcons.fileAlt,
-                //               //   size: 60,
-                //               //   color: Color(0xff4AA0EC),
-                //               // ),
-                //
-                //               Image(
-                //                 image: AssetImage('images/payslip.png'),
-                //                 height: 60,
-                //                 width: 60,
-                //               ),
-                //
-                //
-                //               SizedBox(height: 20,),
-                //
-                //               Text("Pay Slip",
-                //                 textAlign: TextAlign.center,
-                //                 style: GoogleFonts.openSans(
-                //                   fontSize: 15,
-                //                   color: Colors.grey,
-                //                 ),
-                //               )
-                //             ],
-                //           ),
-                //         ),
-                //       ),
-                //
-                //       SizedBox(width: 20,),
-                //       //
-                //       // Container(
-                //       //   height: MediaQuery.of(context).size.width/2.5,
-                //       //   width: MediaQuery.of(context).size.width/2.65,
-                //       //   decoration: BoxDecoration(
-                //       //     color: Colors.white,
-                //       //     //border: Border.all(color: Colors.grey),
-                //       //     borderRadius: BorderRadius.circular(20),
-                //       //     boxShadow: [
-                //       //       BoxShadow(
-                //       //         color: Colors.grey.withOpacity(0.5),
-                //       //         spreadRadius: 1,
-                //       //         blurRadius: 5,
-                //       //         offset: Offset(0, 3), // changes position of shadow
-                //       //       ),
-                //       //     ],
-                //       //   ),
-                //       //   child: FlatButton(
-                //       //     shape: RoundedRectangleBorder(
-                //       //         borderRadius: BorderRadius.circular(20.0)),
-                //       //
-                //       //     onPressed: (){
-                //       //       Navigator.push(context, MaterialPageRoute(builder: (context)=>Sales_Homepage()));
-                //       //     },
-                //       //     child: Column(
-                //       //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       //       mainAxisAlignment: MainAxisAlignment.center,
-                //       //       children: [
-                //       //         // const Icon(FontAwesomeIcons.sellsy,
-                //       //         //   size: 60,
-                //       //         //   color: Color(0xff4AA0EC),
-                //       //         // ),
-                //       //
-                //       //         Image(
-                //       //           image: AssetImage('images/sales.png'),
-                //       //           height: 60,
-                //       //           width: 60,
-                //       //         ),
-                //       //
-                //       //
-                //       //         SizedBox(height: 20,),
-                //       //
-                //       //         Text("Sales",
-                //       //           textAlign: TextAlign.center,
-                //       //           style: GoogleFonts.openSans(
-                //       //             fontSize: 15,
-                //       //             color: Colors.grey,
-                //       //           ),
-                //       //         )
-                //       //       ],
-                //       //     ),
-                //       //   ),
-                //       // ),
-                //
-                //
-                //     ],
-                //   ),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 30.0, right: 30.0, bottom: 30.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Container(
+                      //   height: MediaQuery.of(context).size.width/2.5,
+                      //   width: MediaQuery.of(context).size.width/2.5,
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.white,
+                      //     //border: Border.all(color: Colors.grey),
+                      //     borderRadius: BorderRadius.circular(20),
+                      //     boxShadow: [
+                      //       BoxShadow(
+                      //         color: Colors.grey.withOpacity(0.5),
+                      //         spreadRadius: 1,
+                      //         blurRadius: 5,
+                      //         offset: Offset(0, 3), // changes position of shadow
+                      //       ),
+                      //     ],
+                      //   ),
+                      //   child: FlatButton(
+                      //     shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(20.0)),
+                      //
+                      //     onPressed: (){
+                      //       Navigator.push(context, MaterialPageRoute(builder: (context)=>Payslip_page(xname: widget.loginModel.xname,xempbank: widget.loginModel.xempbank,xacc: widget.loginModel.xacc, xstaff: widget.loginModel.xstaff,)));
+                      //     },
+                      //     child: Column(
+                      //       crossAxisAlignment: CrossAxisAlignment.center,
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         // const Icon(FontAwesomeIcons.fileAlt,
+                      //         //   size: 60,
+                      //         //   color: Color(0xff4AA0EC),
+                      //         // ),
+                      //
+                      //         Image(
+                      //           image: AssetImage('images/payslip.png'),
+                      //           height: 60,
+                      //           width: 60,
+                      //         ),
+                      //
+                      //
+                      //         SizedBox(height: 20,),
+                      //
+                      //         Text("Pay Slip",
+                      //           textAlign: TextAlign.center,
+                      //           style: GoogleFonts.openSans(
+                      //             fontSize: 15,
+                      //             color: Colors.grey,
+                      //           ),
+                      //         )
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
 
+                      SizedBox(
+                        width: 20,
+                      ),
+                      //
+                      Container(
+                        height: MediaQuery.of(context).size.width / 2.5,
+                        width: MediaQuery.of(context).size.width / 2.65,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          //border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Sales_Homepage()));
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // const Icon(FontAwesomeIcons.sellsy,
+                              //   size: 60,
+                              //   color: Color(0xff4AA0EC),
+                              // ),
 
-                SizedBox(height: 20,),
+                              Image(
+                                image: AssetImage('images/sales.png'),
+                                height: 60,
+                                width: 60,
+                              ),
 
+                              SizedBox(
+                                height: 20,
+                              ),
+
+                              Text(
+                                "Sales",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.openSans(
+                                  fontSize: 15,
+                                  color: Colors.grey,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),
-          
         ),
-        
       ),
     );
   }
 }
-
-
